@@ -58,20 +58,6 @@ class MainActivity : AppCompatActivity(), LogicMethods {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putSerializable(GAME_KEY, game)
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val tmpGame :StartGame? = savedInstanceState.getSerializable(GAME_KEY) as StartGame
-        if (tmpGame != null) {
-            game = tmpGame
-            game.gameBoard()
-        }
-    }
-
     @Suppress("UNUSED_PARAMETER")
     fun onClick(view: View) {
         this.setupNewGame()
@@ -146,7 +132,7 @@ class MainActivity : AppCompatActivity(), LogicMethods {
             512 -> bgCol = resources.getColor(R.color.t512_bg, null)
             1024 -> bgCol = resources.getColor(R.color.t1024_bg, null)
             2048 -> bgCol = resources.getColor(R.color.t2048_bg, null)
-            else -> { } // won't happen
+            else -> { }
         }
         tv.setBackgroundColor(bgCol)
         tv.setTextColor(txCol)

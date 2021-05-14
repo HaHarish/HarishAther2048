@@ -285,19 +285,12 @@ open class GameLogic : Serializable {
             this.applyGameMoves()
         }
 
-        if (this.score != tempScore) {
-            delegate.userScoreChanged(score = this.score)
-        }
-
         if (!hasMovesRemaining()) {
             this.gameOver = true
             if (this.maxTile >= Constants.WIN_TARGET) {
                 delegate.userWin()
             } else {
                 delegate.userFail()
-            }
-            if (this.score != tempScore && this.score > this.previousHighScore) {
-                delegate.userPB(this.score)
             }
             return false
         }

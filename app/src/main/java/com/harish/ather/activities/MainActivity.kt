@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), LogicMethods {
             val tmpGame : StartGame? = savedInstanceState.getSerializable(GAME_KEY) as StartGame
             if (tmpGame != null) {
                 game = tmpGame
-                game.replotBoard()
+                game.gameBoard()
             }
         } else {
             game = StartGame(this)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), LogicMethods {
         val tmpGame :StartGame? = savedInstanceState.getSerializable(GAME_KEY) as StartGame
         if (tmpGame != null) {
             game = tmpGame
-            game.replotBoard()
+            game.gameBoard()
         }
     }
 
@@ -82,9 +82,7 @@ class MainActivity : AppCompatActivity(), LogicMethods {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-
         when (event.action) {
-
             MotionEvent.ACTION_DOWN -> {
                 x1 = event.x
                 y1 = event.y
@@ -104,9 +102,7 @@ class MainActivity : AppCompatActivity(), LogicMethods {
     }
 
     private fun paintTransition(move: Transition) {
-
         val tv = findViewById<TextView>(cells[move.location])
-
         if (move.action == TileMoveType.Slide || move.action == TileMoveType.Merge) {
             paintCell(tv, move.value)
             this.paintTransition(Transition(TileMoveType.Clear, 0, move.oldLocation))

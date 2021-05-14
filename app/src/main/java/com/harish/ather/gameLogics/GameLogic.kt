@@ -61,7 +61,7 @@ open class GameLogic : Serializable {
         this.applyGameMoves()
     }
 
-    fun replotBoard() {
+    fun gameBoard() {
         transitions = ArrayList()
         for (i in 0 until gridCount) {
             this.transitions.add(Transition(TileMoveType.Reset, tiles[i], i))
@@ -129,7 +129,6 @@ open class GameLogic : Serializable {
         var moved = false
         val tmpArr = intArrayOf(*indexes)
 
-
         var es = 0
         for (j in tmpArr.indices) {
             if (tiles[tmpArr[es]] != blankTile) {
@@ -138,7 +137,6 @@ open class GameLogic : Serializable {
             } else if (tiles[tmpArr[j]] == blankTile) {
                 continue
             } else {
-                // Otherwise we have a slide condition
                 tiles[tmpArr[es]] = tiles[tmpArr[j]]
                 tiles[tmpArr[j]] = blankTile
                 transitions.add(Transition(TileMoveType.Slide, tiles[tmpArr[es]], tmpArr[es], tmpArr[j]))
@@ -264,8 +262,6 @@ open class GameLogic : Serializable {
     }
 
     fun actionMove(move : GameMoves) : Boolean {
-
-        var tempScore = this.score
 
         this.transitions = ArrayList()
 
